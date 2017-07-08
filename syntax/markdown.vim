@@ -155,6 +155,19 @@ hi def link markdownCodeDelimiter         Delimiter
 hi def link markdownEscape                Special
 hi def link markdownError                 Error
 
+""|
+""| Additions by davesque
+""|
+
+" Inline math
+syn region markdownInlineLatex start='\$' skip='\\$' end='\$'
+
+" Latex environments
+syn region markdownLatexEnvironment start='\\begin{.*}' end='\\end{.*}' contains=markdownLatexEnvironment
+
+hi link markdownInlineLatex Statement
+hi link markdownLatexEnvironment Statement
+
 let b:current_syntax = "markdown"
 if main_syntax ==# 'markdown'
   unlet main_syntax
