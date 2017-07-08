@@ -118,6 +118,19 @@ endif
 syn match markdownEscape "\\[][\\`*_{}()<>#+.!-]"
 syn match markdownError "\w\@<=_\w\@="
 
+""|
+""| Additions by davesque
+""|
+
+" Inline math
+syn region markdownInlineLatex start='\$' skip='\\$' end='\$'
+
+" Latex environments
+syn region markdownLatexEnvironment start='\\begin{.*}' end='\\end{.*}' contains=markdownLatexEnvironment
+
+hi def link markdownInlineLatex           Statement
+hi def link markdownLatexEnvironment      Statement
+
 hi def link markdownH1                    htmlH1
 hi def link markdownH2                    htmlH2
 hi def link markdownH3                    htmlH3
@@ -154,19 +167,6 @@ hi def link markdownCodeDelimiter         Delimiter
 
 hi def link markdownEscape                Special
 hi def link markdownError                 Error
-
-""|
-""| Additions by davesque
-""|
-
-" Inline math
-syn region markdownInlineLatex start='\$' skip='\\$' end='\$'
-
-" Latex environments
-syn region markdownLatexEnvironment start='\\begin{.*}' end='\\end{.*}' contains=markdownLatexEnvironment
-
-hi link markdownInlineLatex Statement
-hi link markdownLatexEnvironment Statement
 
 let b:current_syntax = "markdown"
 if main_syntax ==# 'markdown'
